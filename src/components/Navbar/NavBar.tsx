@@ -1,3 +1,4 @@
+import { Nav } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -7,7 +8,7 @@ const NavBar = () => {
     return ( <>
      <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src="./logo.png"
@@ -17,6 +18,10 @@ const NavBar = () => {
             />{' '}
             Tontube
           </Navbar.Brand>
+          <Nav.Link href="/playlist">Vidéo</Nav.Link>
+          <Navbar.Text>
+            Signed in as: <a href="/profile">Mark Otto</a>
+          </Navbar.Text>
         </Container>
       </Navbar>
     </> );
