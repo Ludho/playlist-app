@@ -32,7 +32,7 @@ export default function Profile() {
     }
 
     return (
-      <div className="container mt-5 row mx-auto">
+      <div className="mt-5 row mx-auto">
         <div className="mx-auto px-4 py-3 rounded-3 col-8">
           <div className="row">
             <div className="col d-flex justify-content-center align-items-center p-0">
@@ -40,7 +40,7 @@ export default function Profile() {
             </div>
             <div className='col-9 d-flex flex-column justify-content-center align-items-start'>
               <p className='fs-5 fw-semibold text-secondary m-0 p-0'>Compte</p>
-              <p className='fs-2 fw-bold m-0 p-0'>{UserManager.shared.firstName} {UserManager.shared.lastName}</p>
+              <p className='fs-2 fw-bold m-0 p-0'>{UserManager.shared.name} {UserManager.shared.name}</p>
             </div>
             <div className="col-2 d-flex flex-column justify-content-end align-items-end p-0">
                 <button type="submit" onClick={() => didTapLogOut()} className="btn btn-danger">

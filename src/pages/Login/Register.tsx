@@ -12,11 +12,10 @@ export default function Register() {
   // Données du formulaire
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [firstName, setFirstName] = useState("");
+  const [name, setName] = useState("");
 
   function didTapConnect() {
-    if (email === null || password === null || email === "" || password === "" || lastName === null || firstName === null || lastName === "" || firstName === "") {
+    if (email === null || password === null || email === "" || password === "" ||name === null ||  name === "") {
       setError(true);
       setLoading(false);
       setErrorMessage("Veuillez renseigner tous les champs.");
@@ -30,14 +29,12 @@ export default function Register() {
     const jsonData = {
       email: email,
       password: password,
-      lastName: lastName,
-      firstName: firstName
+      name: name
     }
     console.log(jsonData);
     axios.post('https://hackiam.ludho.fr/api/auth/create', jsonData)
       .then(res => {
-          localStorage.setItem("user_name", res.data.firstName);
-          localStorage.setItem("user_lastname", res.data.lastName);
+          localStorage.setItem("user_name", res.data.name);
           localStorage.setItem("user_points", res.data.points);
           localStorage.setItem("is_connected", "true");
           localStorage.setItem("user_id", res.data.id);
@@ -54,16 +51,12 @@ export default function Register() {
     }
 
   return (
-    <form className="container mt-5 row mx-auto">
+    <form className="mt-5 row mx-auto">
       <div className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7" style={{backgroundColor: "rgba(236, 236, 236, 1.00)"}}>
           <p className="text-center fw-bolder fs-2">Inscription</p>
           <div>
-            <label htmlFor="lastName" className="form-label">Nom</label>
-            <input type="text" required value={lastName} onChange={e => setLastName(e.target.value)} className="form-control" placeholder="Saisissez votre nom de famille" name="lastName" id="lastName"></input>
-          </div>
-          <div>
-            <label htmlFor="firstName" className="form-label">Prénom</label>
-            <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)} className="form-control" placeholder="Saisissez votre prénom" name="firstName" id="firstName"></input>
+            <label htmlFor="name" className="form-label">Nom d'affichage</label>
+            <input type="text" required value={name} onChange={e => setName(e.target.value)} className="form-control" placeholder="Saisissez votre nom d'affichage" name="name" id="name"></input>
           </div>
           <div>
             <label htmlFor="email" className="form-label">Email</label>

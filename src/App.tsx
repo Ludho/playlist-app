@@ -13,22 +13,25 @@ import {
   Link,
   Routes
 } from "react-router-dom";
+import { Container } from 'react-bootstrap';
 
 function App() {
   return (
     <>
-    <Router>
-    <Header></Header>
-    <Routes>        
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<LogIn />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/signin" element={<Register />}></Route>
-        <Route path="/home" element={<Home/>}></Route>
-        <Route path="/edit-profile" element={<EditProfile/>}></Route>
-        <Route path="/edit-image" element={<EditImage/>}></Route>
-      </Routes>
-    </Router>
+      <Router>
+        <Header></Header>
+        <Container className='pt-5'>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/login" element={<LogIn />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/signin" element={<Register />}></Route>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/edit-profile" element={<EditProfile />}></Route>
+            <Route path="/edit-image" element={<EditImage />}></Route>
+          </Routes>
+        </Container>
+      </Router>
     </>
   );
 }

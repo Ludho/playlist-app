@@ -30,10 +30,9 @@ export default function LogIn() {
       password: password
     }
     console.log(jsonData);
-    axios.post('hhttps://hackiam.ludho.fr/api/auth/login', jsonData)
+    axios.post('https://hackiam.ludho.fr/api/auth/login', jsonData)
       .then(res => {
-          localStorage.setItem("user_name", res.data.firstName);
-          localStorage.setItem("user_lastname", res.data.lastName);
+          localStorage.setItem("user_name", res.data.name);
           localStorage.setItem("user_points", res.data.points);
           localStorage.setItem("is_connected", "true");
           localStorage.setItem("user_id", res.data.id);
@@ -50,7 +49,7 @@ export default function LogIn() {
     }
 
   return (
-    <form className="container mt-5 row mx-auto">
+    <form className="mt-5 row mx-auto">
       <div className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7" style={{backgroundColor: "rgba(236, 236, 236, 1.00)"}}>
           <p className="text-center fw-bolder fs-2">Connection</p>
           <div>

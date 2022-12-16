@@ -51,13 +51,13 @@ export default function EditImage() {
   }
 
   return (
-    <div className="container mt-5 row mx-auto">
+    <div className="mt-5 row mx-auto">
       <div className="mx-auto px-4 py-3 rounded-3 col" >
           <p className="text-center fw-bolder fs-2">Choisissez une nouvelle image</p>
           <div className="row">
 
-          {imagesIndex.map((value, index) => {
-              return <div className="col-2 my-3" style={{cursor: 'pointer'}} onClick={(event => {didTapImage(value)})}>
+          {imagesIndex.map((value) => {
+              return <div className="col-2 my-3" style={{cursor: 'pointer'}} onClick={() => {didTapImage(value)}}>
                         <img className="" src={'/Images/profile-images/profile-image' + value + '.jpg'} alt='logo' />
                       </div>
           })}

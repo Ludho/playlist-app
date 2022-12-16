@@ -4,8 +4,7 @@ export default class UserManager {
 
     static shared = new UserManager();
 
-    firstName = localStorage.getItem("user_name") ?? "unknown";
-    lastName = localStorage.getItem("user_lastname") ?? "unknown";
+    name = localStorage.getItem("user_name") ?? "unknown";
     id = localStorage.getItem("user_id") ?? "unknown";
     imageID = localStorage.getItem("user_image_id") ?? null;
 
@@ -15,8 +14,7 @@ export default class UserManager {
 
     setupStorageListener() {
         window.addEventListener("storage", () => {
-            this.firstName = localStorage.getItem("user_name") ?? "unknown";
-            this.lastName = localStorage.getItem("user_lastname") ?? "unknown";
+            this.name = localStorage.getItem("user_name") ?? "unknown";
             this.id = localStorage.getItem("user_id") ?? "unknown";
             this.imageID = localStorage.getItem("user_image_id") ?? null;
         });
