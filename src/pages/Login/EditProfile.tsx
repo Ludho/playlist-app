@@ -7,10 +7,10 @@ export default function EditImage() {
 
   const imagesIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   
-   function didTapImage(imageID:number) {
+   function changeImage(imageID:number) {
 
     const jsonData = {
-        avatarURL: imageID
+        avatarID: imageID
     }
 
     
@@ -32,7 +32,7 @@ export default function EditImage() {
 
   function deleteImage() {
     const jsonData = {
-      avatarURL: null
+      avatarID: null
     }
     const userID = localStorage.getItem("user_id");
     if (userID === "" || userID == null) {
@@ -57,7 +57,7 @@ export default function EditImage() {
           <div className="row">
 
           {imagesIndex.map((value) => {
-              return <div className="col-2 my-3" style={{cursor: 'pointer'}} onClick={() => {didTapImage(value)}}>
+              return <div className="col-2 my-3" style={{cursor: 'pointer'}} onClick={() => {changeImage(value)}}>
                         <img className="" src={'/Images/profile-images/profile-image' + value + '.jpg'} alt='logo' />
                       </div>
           })}

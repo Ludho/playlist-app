@@ -1,14 +1,22 @@
 import axios from 'axios';
 import React from 'react';
-import UserManager from '../../Manager/UserManager';
+import { useCookies } from 'react-cookie';
+import UserManager from '../Manager/UserManager';
 
 export default function Profile() {
+  
+  const [cookies, setCookie, removeCookie] = useCookies(['Authentication']);
 
-    function didTapLogOut() {
+    function logOut() {
+      console.log(cookies);
         if (window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?") == false) {
           return;
         }
-        axios.post('https://hackiam.ludho.fr/api/auth/logout')
+        const headers = {
+          'Content-Type': 'application/json',
+          
+        }
+        axios.post(process.env.REACT_APP_API_URL+'/authentification/log-out',null,{headers: {'Cookie': `Authentification=${cookies.Authentication}`}})
           .then(res => {
               localStorage.clear();
               window.location.href = "/"
@@ -17,7 +25,7 @@ export default function Profile() {
           });
     }
 
-    function didTapDelete() {
+    function deleteAccount() {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.") == false) {
           return;
         }
@@ -43,7 +51,7 @@ export default function Profile() {
               <p className='fs-2 fw-bold m-0 p-0'>{UserManager.shared.name} {UserManager.shared.name}</p>
             </div>
             <div className="col-2 d-flex flex-column justify-content-end align-items-end p-0">
-                <button type="submit" onClick={() => didTapLogOut()} className="btn btn-danger">
+                <button type="submit" onClick={() => logOut()} className="btn btn-danger">
                     Déconnexion
                 </button>
             </div>
@@ -60,7 +68,7 @@ export default function Profile() {
                   <button type="submit" className="btn btn-secondary" onClick={() => window.location.href = "/edit-image"}>
                       Choisir une nouvelle image
                   </button>
-                  <button type="submit" onClick={() => didTapDelete()} className="btn btn-danger">
+                  <button type="submit" onClick={() => deleteAccount()} className="btn btn-danger">
                       Supprimer le compte
                   </button>
               </div>

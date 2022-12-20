@@ -5,7 +5,6 @@ import axios from 'axios';
 export default function Register() {
 
   // Erreurs et chargement
-  const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Une erreur est survenue.");
   const [showError, setError] = useState(false);
 
@@ -14,60 +13,59 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  function didTapConnect() {
+  function register() {
     if (email === null || password === null || email === "" || password === "" ||name === null ||  name === "") {
       setError(true);
-      setLoading(false);
       setErrorMessage("Veuillez renseigner tous les champs.");
       return;
     } else {
       setError(false);
     }
-    
-    setLoading(true);
 
     const jsonData = {
       email: email,
       password: password,
-      name: name
+      name: name,
+      avatarID: 1
     }
-    console.log(jsonData);
-    axios.post('https://hackiam.ludho.fr/api/auth/create', jsonData)
+    console.log(process.env.REACT_APP_API_URL);
+    axios.post(process.env.REACT_APP_API_URL+'/authentification/register', jsonData)
       .then(res => {
+        console.log(res)
+        axios.post(process.env.REACT_APP_API_URL+'/authentification/log-in', jsonData,{ withCredentials: true }).then((res=>{
           localStorage.setItem("user_name", res.data.name);
-          localStorage.setItem("user_points", res.data.points);
           localStorage.setItem("is_connected", "true");
           localStorage.setItem("user_id", res.data.id);
-          localStorage.setItem("user_image_id", res.data.avatarURL);
-
-          setLoading(false);
+          localStorage.setItem("user_image_id", res.data.avatarID);
+    
           window.location.href = "/"
+        }))
+          
       }).catch(function (error) {
         console.log(error);
           setError(true);
-          setLoading(false);
           setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
       });
     }
 
   return (
-    <form className="mt-5 row mx-auto">
+    <div className="mt-5 row mx-auto">
       <div className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7" style={{backgroundColor: "rgba(236, 236, 236, 1.00)"}}>
           <p className="text-center fw-bolder fs-2">Inscription</p>
           <div>
             <label htmlFor="name" className="form-label">Nom d'affichage</label>
-            <input type="text" required value={name} onChange={e => setName(e.target.value)} className="form-control" placeholder="Saisissez votre nom d'affichage" name="name" id="name"></input>
+            <input type="text" required value={name} onChange={e => setName(e.target.value)} className="form-control" placeholder="Saisissez votre nom d'affichage" name="name"></input>
           </div>
           <div>
             <label htmlFor="email" className="form-label">Email</label>
-            <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="form-control" placeholder="Saisissez votre email" name="email" id="email"></input>
+            <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="form-control" placeholder="Saisissez votre email" name="email" ></input>
           </div>
           <div>
             <label htmlFor="password" className="form-label">Mot de passe</label>
-            <input type="password" required value={password} onChange={e => setPassword(e.target.value)} className="form-control" placeholder="Saisissez votre mot de passe" name="password" id="password"></input>
+            <input type="password" required value={password} onChange={e => setPassword(e.target.value)} className="form-control" placeholder="Saisissez votre mot de passe" name="password"></input>
           </div>
           <div className="d-flex justify-content-center align-items-center">
-            <button type="submit" onClick={() => didTapConnect()} className="btn btn-primary">
+            <button onClick={() => register()} className="btn btn-primary">
               Continuer
             </button>
           </div>
@@ -81,6 +79,6 @@ export default function Register() {
             </div>
           }
       </div>
-  </form>
+  </div>
   )
 }

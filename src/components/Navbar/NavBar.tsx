@@ -1,10 +1,12 @@
 import { Container, Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
+import UserManager from '../../Manager/UserManager';
 
 
 const NavBar = () => {
 
-  const connected: boolean = false;
+  let connected = localStorage.getItem("is_connected")?localStorage.getItem("is_connected"):false;
+  
   return (<>
     <Navbar fixed="top" bg="dark" variant="dark">
       <Container>
@@ -23,11 +25,11 @@ const NavBar = () => {
         </Nav>
         {connected ?
           <Navbar.Text>
-            Vous êtes connecté en tant que: <a href="/profile">Mark Otto</a>
+            Vous êtes connecté en tant que: <a href="/profile">{UserManager.shared.name}</a>
           </Navbar.Text>
           :
           <Nav>
-            <Nav.Link href="/signin">Se connecter</Nav.Link>
+            <Nav.Link href="/register">S'inscrire</Nav.Link>
           </Nav>
         }
 
