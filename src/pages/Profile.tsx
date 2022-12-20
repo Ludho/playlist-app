@@ -1,14 +1,19 @@
 import axios from 'axios';
-import React from 'react';
 import { useCookies } from 'react-cookie';
 import UserManager from '../Manager/UserManager';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 export default function Profile() {
-  
-  const [cookies, setCookie, removeCookie] = useCookies(['Authentication']);
+
+  console.log("profile")
+  console.log(UserManager.shared)
+  useEffect(()=>{
+    
+  },[]);
 
     function logOut() {
-      console.log(cookies);
+      
         if (window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?") == false) {
           return;
         }
@@ -16,7 +21,7 @@ export default function Profile() {
           'Content-Type': 'application/json',
           
         }
-        axios.post(process.env.REACT_APP_API_URL+'/authentification/log-out',null,{headers: {'Cookie': `Authentification=${cookies.Authentication}`}})
+        axios.post(process.env.REACT_APP_API_URL+'/authentification/log-out',null,{ withCredentials: true })
           .then(res => {
               localStorage.clear();
               window.location.href = "/"

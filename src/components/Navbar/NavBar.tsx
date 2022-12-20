@@ -29,7 +29,7 @@ const NavBar = () => {
           </Navbar.Text>
           :
           <Nav>
-            <Nav.Link href="/register">S'inscrire</Nav.Link>
+            <Nav.Link href="/login">Se connecter</Nav.Link>
           </Nav>
         }
 
