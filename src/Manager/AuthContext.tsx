@@ -1,4 +1,16 @@
 import React from "react";
-import {User} from './User'
+import { User } from "./User";
 
-export const CartCountContext = React.createContext({user:null,setUser:(user:User)=>{},isLoggedIn:():boolean=>{return false}});
+const user:User|null = {
+    id:0, name:"", email:"", avatarID:0
+}
+interface IAuthContext {
+    user: User|null;
+    setUser?: (user:User|null) => void;
+  }
+  
+  const defaultState = {
+    user: user,
+  };
+
+export const AuthContext = React.createContext<IAuthContext>(defaultState);

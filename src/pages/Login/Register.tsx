@@ -28,21 +28,13 @@ export default function Register() {
       name: name,
       avatarID: 1
     }
-    console.log(process.env.REACT_APP_API_URL);
     axios.post(process.env.REACT_APP_API_URL+'/authentification/register', jsonData)
       .then(res => {
-        console.log(res)
         axios.post(process.env.REACT_APP_API_URL+'/authentification/log-in', jsonData,{ withCredentials: true }).then((res=>{
-          localStorage.setItem("user_name", res.data.name);
-          localStorage.setItem("is_connected", "true");
-          localStorage.setItem("user_id", res.data.id);
-          localStorage.setItem("user_image_id", res.data.avatarID);
-    
           window.location.href = "/"
         }))
           
       }).catch(function (error) {
-        console.log(error);
           setError(true);
           setErrorMessage("Une erreur est survenue. Veuillez réessayer.");
       });

@@ -30,17 +30,10 @@ export default function LogIn() {
       password: password
     }
     axios.post(process.env.REACT_APP_API_URL+'/authentification/log-in', jsonData,{ withCredentials: true }).then((res=>{
-      localStorage.setItem("user_name", res.data.name);
-      localStorage.setItem("is_connected", "true");
-      localStorage.setItem("user_id", res.data.id);
-      localStorage.setItem("user_image_id", res.data.avatarID);
-
       window.location.href = "/"
     }))
       .catch(function (error) {
-        console.log(error);
           setError(true);
-
           setErrorMessage("Mot de passe ou email incorrect.");
       });
     }

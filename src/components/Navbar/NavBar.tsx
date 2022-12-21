@@ -1,11 +1,11 @@
+import { useContext } from 'react';
 import { Container, Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
-import UserManager from '../../Manager/UserManager';
-
+import { AuthContext } from '../../Manager/AuthContext';
 
 const NavBar = () => {
 
-  let connected = localStorage.getItem("is_connected")?localStorage.getItem("is_connected"):false;
+  const user = useContext(AuthContext).user;
   
   return (<>
     <Navbar fixed="top" bg="dark" variant="dark">
@@ -23,9 +23,9 @@ const NavBar = () => {
         <Nav>
           <Nav.Link href="/playlist">Vidéos</Nav.Link>
         </Nav>
-        {connected ?
+        {user!=null ?
           <Navbar.Text>
-            Vous êtes connecté en tant que: <a href="/profile">{UserManager.shared.name}</a>
+            Vous êtes connecté en tant que: <a href="/profile">{user?.name}</a>
           </Navbar.Text>
           :
           <Nav>
@@ -40,7 +40,3 @@ const NavBar = () => {
 }
 
 export default NavBar;
-
-function useState(arg0: string | null): [any, any] {
-  throw new Error('Function not implemented.');
-}
