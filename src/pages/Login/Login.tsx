@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../Manager/AuthContext';
+import {ColorDiv} from '../../styles/Style'
 
 export default function LogIn() {
 
+    const setUser = useContext(AuthContext).setUser;
   // Erreurs et chargement
 
   const [errorMessage, setErrorMessage] = useState("Une erreur est survenue.");
@@ -30,7 +33,8 @@ export default function LogIn() {
       password: password
     }
     axios.post(process.env.REACT_APP_API_URL+'/authentification/log-in', jsonData,{ withCredentials: true }).then((res=>{
-      window.location.href = "/"
+        setUser(res.data);
+        window.location.href = "/"
     }))
       .catch(function (error) {
           setError(true);
@@ -40,7 +44,7 @@ export default function LogIn() {
 
   return (
     <div className="mt-5 row mx-auto">
-      <div className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7" style={{backgroundColor: "rgba(236, 236, 236, 1.00)"}}>
+      <ColorDiv className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7">
           <p className="text-center fw-bolder fs-2">Connection</p>
           <div>
             <label htmlFor="email" className="form-label">Email</label>
@@ -64,7 +68,7 @@ export default function LogIn() {
                 <p className="text-center text-sm text-orange-500 p-0 m-0">{errorMessage}</p>
             </div>
           }
-      </div>
+      </ColorDiv>
   </div>
   )
 }

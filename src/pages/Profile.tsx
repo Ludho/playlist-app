@@ -5,6 +5,7 @@ import { AuthContext } from '../Manager/AuthContext';
 export default function Profile() {
 
   const user = useContext(AuthContext).user;
+  const setUser = useContext(AuthContext).setUser;
 
     const logOut = () =>{
         if (window.confirm("Êtes-vous sûr de vouloir vous déconnecter ?") == false) {
@@ -13,7 +14,8 @@ export default function Profile() {
 
         axios.post(process.env.REACT_APP_API_URL+'/authentification/log-out',null,{ withCredentials: true })
           .then(res => {
-              window.location.href = "/"
+              setUser(null);
+              window.location.href = "/login"
           }).catch(function (error) {
               alert("Une erreur est survenue");
           });
@@ -23,10 +25,11 @@ export default function Profile() {
         if (window.confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.") == false) {
           return;
         }
-        axios.delete('https://hackiam.ludho.fr/api/user/')
+        axios.delete(process.env.REACT_APP_API_URL+'/authentification',{ withCredentials: true })
           .then(res => {
               alert("Votre compte a bien été supprimé.");
-              window.location.href = "/"
+              setUser(null)
+              window.location.href = "/login"
           }).catch(function (error) {
               alert("Une erreur est survenue");
           });

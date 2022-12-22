@@ -7,8 +7,7 @@ interface IProps {
     redirect?: string;
 }
 
-const PrivateRoute = ({element,redirect='/'}: IProps) => {
-    // const user = useContext(AuthContext).user;
+const ConnectedRoute = ({element,redirect='/'}: IProps) => {
     const setUser = useContext(AuthContext).setUser;
     useEffect(() => {
         axios
@@ -16,9 +15,9 @@ const PrivateRoute = ({element,redirect='/'}: IProps) => {
           withCredentials: true,
         })
         .then((user: any) => {
+            window.location.href = redirect;
         }).catch(()=>{
           setUser(null);
-          window.location.href = redirect;
         });
       }, []);
       
@@ -29,4 +28,4 @@ const PrivateRoute = ({element,redirect='/'}: IProps) => {
     )
 }
 
-export default PrivateRoute;
+export default ConnectedRoute;

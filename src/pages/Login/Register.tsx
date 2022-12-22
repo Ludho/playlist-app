@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import {ColorDiv} from '../../styles/Style'
 
 export default function Register() {
 
@@ -42,7 +43,7 @@ export default function Register() {
 
   return (
     <div className="mt-5 row mx-auto">
-      <div className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7" style={{backgroundColor: "rgba(236, 236, 236, 1.00)"}}>
+      <ColorDiv className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7">
           <p className="text-center fw-bolder fs-2">Inscription</p>
           <div>
             <label htmlFor="name" className="form-label">Nom d'affichage</label>
@@ -70,7 +71,7 @@ export default function Register() {
                 <p className="text-center text-sm text-orange-500 p-0 m-0">{errorMessage}</p>
             </div>
           }
-      </div>
+      </ColorDiv>
   </div>
   )
 }

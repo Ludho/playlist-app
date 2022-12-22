@@ -6,11 +6,12 @@ const user:User|null = {
 }
 interface IAuthContext {
     user: User|null;
-    setUser?: (user:User|null) => void;
+    setUser: (user:User|null) => void;
   }
   
   const defaultState = {
     user: user,
+    setUser:()=>{}
   };
 
 export const AuthContext = React.createContext<IAuthContext>(defaultState);
