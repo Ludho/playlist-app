@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Home from "./pages/Home";
 import Header from "./components/Header/Header";
@@ -8,8 +8,7 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/Login/EditProfile";
 import EditImage from "./pages/Login/EditImage";
 import PrivateRoute from "./components/Utils/PrivateRoute";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "./Manager/AuthContext";
 import { User } from "./Manager/User";
@@ -38,8 +37,7 @@ function App() {
     <>
       <AuthContext.Provider value={{ user: user, setUser: (user) => { setUser(user) } }}>
         <Router>
-          <Header></Header>
-          <Container className="pt-5">
+            <Header></Header>
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/login" element={<ConnectedRoute element={<LogIn />} redirect="/profile" />}></Route>
@@ -51,7 +49,6 @@ function App() {
               <Route path="/playlist" element={<PrivateRoute element={<Playlist />} redirect="/login" />}></Route>
               <Route path="*" element={<HomeRoute element={<Home />} redirect="/" />} />
             </Routes>
-          </Container>
         </Router>
       </AuthContext.Provider>
     </>

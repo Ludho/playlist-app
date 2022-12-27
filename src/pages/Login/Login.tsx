@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../Manager/AuthContext';
 import {ColorDiv} from '../../styles/Style'
+import { Container } from 'react-bootstrap';
 
 export default function LogIn() {
 
@@ -16,7 +17,7 @@ export default function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function connect() {
+  const connect = () => {
     if (email === null || password === null || email === "" || password === "") {
       setError(true);
 
@@ -43,6 +44,7 @@ export default function LogIn() {
     }
 
   return (
+    <Container className="pt-5">
     <div className="mt-5 row mx-auto">
       <ColorDiv className="mx-auto d-grid gap-3 px-4 py-3 rounded-3 col-7">
           <p className="text-center fw-bolder fs-2">Connection</p>
@@ -70,5 +72,6 @@ export default function LogIn() {
           }
       </ColorDiv>
   </div>
+  </Container>
   )
 }

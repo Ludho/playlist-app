@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../Manager/AuthContext';
 
-export default function EditImage() {
+ const EditImage = ()=>{
 
     const imagesIndex = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const user = useContext(AuthContext).user;
@@ -40,3 +40,5 @@ export default function EditImage() {
         </div>
     )
 }
+
+export default EditImage;
