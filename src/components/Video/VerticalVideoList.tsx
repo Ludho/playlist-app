@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { IVideo } from "../../Manager/Video";
 import VerticalVideoCard from "./VerticalVideoCard";
 
-const VerticalVideoList = () => {
+interface Props {
+    id: number;
+}
+
+const VerticalVideoList = ({id}:Props) => {
   const [videos, setVideos] = useState<IVideo[]>([]);
 
   useEffect(() => {
@@ -23,18 +27,19 @@ const VerticalVideoList = () => {
     <>
       <div className="flex-column">
         {videos.map((video: IVideo) => {
-          return (
-            <VerticalVideoCard key={video.id}
-              id={video.id}
-              videoId={video.videoId}
-              publishedAt={video.publishedAt}
-              channelId={video.channelId}
-              channelTitle={video.channelTitle}
-              title={video.title}
-              thumbnail={video.thumbnail}
-              duration={video.duration}
-            ></VerticalVideoCard>
-          );
+            if(video.id == id)return;
+            return (
+                <VerticalVideoCard key={video.id}
+                id={video.id}
+                videoId={video.videoId}
+                publishedAt={video.publishedAt}
+                channelId={video.channelId}
+                channelTitle={video.channelTitle}
+                title={video.title}
+                thumbnail={video.thumbnail}
+                duration={video.duration}
+                ></VerticalVideoCard>
+            );
         })}
       </div>
     </>

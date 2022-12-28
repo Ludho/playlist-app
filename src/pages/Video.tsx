@@ -30,7 +30,7 @@ const Video = ()=>{
                 }
             </div> 
             <div className="col-3 flex-column vh-100" style={{paddingTop:"70px", backgroundColor:"#0F0F0F", overflowY:"scroll"}}>
-                <VerticalVideoList></VerticalVideoList>
+                <VerticalVideoList id={id?+id:0}></VerticalVideoList>
             </div>
         </div>
     </> );
