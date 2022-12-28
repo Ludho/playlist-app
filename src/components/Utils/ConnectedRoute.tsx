@@ -19,7 +19,7 @@ const ConnectedRoute = ({element,redirect='/'}: IProps) => {
         }).catch(()=>{
           setUser(null);
         });
-      }, []);
+      }, [redirect,setUser]);
       
     return (
         <>

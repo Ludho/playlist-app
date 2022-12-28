@@ -17,7 +17,7 @@ const Playlist = () => {
     <>
     <CreateVideoModal show={show} handleClose={handleClose} ></CreateVideoModal>
       <div className="row">
-        <div className="col-2 flex-column bg-dark vh-100" style={{paddingTop:"70px"}}>
+        <div className="col-2 flex-column vh-100" style={{paddingTop:"70px", backgroundColor:"#0F0F0F"}}>
           <LeftNavBarButton onClick={()=>{setShow(true)}} text="Ajouter une vidéo" icon={<AddBoxIcon sx={{ color: "white" }}/>}></LeftNavBarButton>
           <LeftNavBarButton text="Work in progress..." icon={<FilterAltIcon sx={{ color: "white" }}/>}></LeftNavBarButton>
           <LeftNavBarButton text="Work in progress..." icon={<Filter1Icon sx={{ color: "white" }}/>}></LeftNavBarButton>
@@ -25,7 +25,7 @@ const Playlist = () => {
           <LeftNavBarButton text="Work in progress..." icon={<Filter3Icon sx={{ color: "white" }}/>}></LeftNavBarButton>
           <LeftNavBarButton text="Work in progress..." icon={<Filter4Icon sx={{ color: "white" }}/>}></LeftNavBarButton>
         </div> 
-        <div className="col-10 vh-100" style={{paddingTop:"70px", overflowY:"scroll"}}>
+        <div className="col-10 vh-100 bg-dark" style={{paddingTop:"70px", overflowY:"scroll"}}>
           <VideoList></VideoList>
         </div>
       </div>

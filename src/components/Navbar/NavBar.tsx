@@ -8,12 +8,12 @@ const NavBar = () => {
   const user = useContext(AuthContext).user;
   
   return (<>
-    <Navbar fixed="top" bg="dark" variant="dark">
+    <Navbar fixed="top" style={{backgroundColor:"#0F0F0F"}} variant="dark">
       <Container>
         <Navbar.Brand href="/">
           <img
             alt=""
-            src="./logo.png"
+            src="/logo.png"
             width="30"
             height="30"
             className="d-inline-block align-top"

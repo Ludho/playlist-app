@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Alert, Form, InputGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { parse, end, toSeconds, pattern } from "iso8601-duration";
+import { parse, toSeconds } from "iso8601-duration";
 import VideoModalCard from './VideoModalCard';
 
 interface Props {
@@ -25,7 +25,7 @@ const CreateVideoModal = ({show,handleClose}:Props) => {
         handleClose();
     }
     const searchVideo = ()=>{
-        if(videoId.length==0){
+        if(videoId.length===0){
             setValidationMessage("Veuillez entrer le lien");
             setValidation(true);
             return;
@@ -39,7 +39,6 @@ const CreateVideoModal = ({show,handleClose}:Props) => {
             }
             setValidation(false);
             setVideo(video.data)
-            console.log(video.data)
         })
     }
 
@@ -54,9 +53,7 @@ const CreateVideoModal = ({show,handleClose}:Props) => {
             description:video.snippet.description,
             duration:toSeconds(parse(video.contentDetails.duration)),
         }
-        console.log(videoData)
         axios.post(process.env.REACT_APP_API_URL+ "/videos",videoData,{withCredentials:true}).then(video=>{
-            console.log(video);
             resetModal();
         })
     }

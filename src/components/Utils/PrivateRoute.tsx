@@ -20,7 +20,7 @@ const PrivateRoute = ({element,redirect='/'}: IProps) => {
           setUser(null);
           window.location.href = redirect;
         });
-      }, []);
+      }, [redirect,setUser]);
       
     return (
         <>

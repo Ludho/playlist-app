@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IVideo } from "../../Manager/Video";
-import VideoCard from "./VideoCard";
+import VerticalVideoCard from "./VerticalVideoCard";
 
-const VideoList = () => {
-  const [videos, setVideos] = useState([]);
+const VerticalVideoList = () => {
+  const [videos, setVideos] = useState<IVideo[]>([]);
 
   useEffect(() => {
     axios
@@ -12,16 +12,19 @@ const VideoList = () => {
         withCredentials: true,
       })
       .then((res: any) => {
-        setVideos(res.data);
+        if(res.data){
+            let data = shuffle(res.data);
+            setVideos(data);
+        }
       });
   }, []);
 
   return (
     <>
-      <div className="row">
+      <div className="flex-column">
         {videos.map((video: IVideo) => {
           return (
-            <VideoCard key={video.id}
+            <VerticalVideoCard key={video.id}
               id={video.id}
               videoId={video.videoId}
               publishedAt={video.publishedAt}
@@ -30,7 +33,7 @@ const VideoList = () => {
               title={video.title}
               thumbnail={video.thumbnail}
               duration={video.duration}
-            ></VideoCard>
+            ></VerticalVideoCard>
           );
         })}
       </div>
@@ -38,4 +41,13 @@ const VideoList = () => {
   );
 };
 
-export default VideoList;
+export default VerticalVideoList;
+
+const shuffle = ([...arr]) => {
+    let m = arr.length;
+    while (m) {
+      const i = Math.floor(Math.random() * m--);
+      [arr[m], arr[i]] = [arr[i], arr[m]];
+    }
+    return arr;
+  };

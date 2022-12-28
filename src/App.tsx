@@ -15,6 +15,7 @@ import { User } from "./Manager/User";
 import Playlist from "./pages/Playlist";
 import ConnectedRoute from "./components/Utils/ConnectedRoute";
 import HomeRoute from "./components/Utils/HomeRoute";
+import Video from "./pages/Video";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
               <Route path="/edit-profile" element={<PrivateRoute element={<EditProfile />} redirect="/login" />}></Route>
               <Route path="/edit-image" element={<PrivateRoute element={<EditImage />} redirect="/login" />}></Route>
               <Route path="/playlist" element={<PrivateRoute element={<Playlist />} redirect="/login" />}></Route>
+              <Route path="/video/:id" element={<PrivateRoute element={<Video />} redirect="/login" />}></Route>
               <Route path="*" element={<HomeRoute element={<Home />} redirect="/" />} />
             </Routes>
         </Router>

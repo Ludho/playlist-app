@@ -1,5 +1,5 @@
-export interface Video{
-    id:string;
+export interface IVideo{
+    id:number;
     videoId:string;
     publishedAt:string;
     channelId:string;
