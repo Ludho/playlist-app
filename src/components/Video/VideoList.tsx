@@ -1,20 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { IVideo } from "../../Manager/Video";
 import VideoCard from "./VideoCard";
-
-const VideoList = () => {
-  const [videos, setVideos] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_API_URL + "/videos", {
-        withCredentials: true,
-      })
-      .then((res: any) => {
-        setVideos(res.data);
-      });
-  }, []);
+interface Props {
+  videos:IVideo[]
+}
+const VideoList = ({videos}:Props) => {
 
   return (
     <>

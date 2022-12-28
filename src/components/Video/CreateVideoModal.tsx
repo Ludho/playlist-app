@@ -9,9 +9,10 @@ import VideoModalCard from './VideoModalCard';
 interface Props {
     show: boolean;
     handleClose:Function;
+    callBack:Function
 }
 
-const CreateVideoModal = ({show,handleClose}:Props) => {
+const CreateVideoModal = ({show,handleClose,callBack}:Props) => {
 
     const [video, setVideo] = useState<any>(null);
     const [videoId, setVideoId] = useState("");
@@ -55,6 +56,7 @@ const CreateVideoModal = ({show,handleClose}:Props) => {
         }
         axios.post(process.env.REACT_APP_API_URL+ "/videos",videoData,{withCredentials:true}).then(video=>{
             resetModal();
+            callBack(video.data);
         })
     }
 
